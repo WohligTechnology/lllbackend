@@ -36,5 +36,24 @@ public function delete($id)
 $query=$this->db->query("DELETE FROM `lll_recommendarticle` WHERE `id`='$id'");
 return $query;
 }
+public function getarticledropdown()
+{
+    $query = $this->db->query('SELECT * FROM `lll_article`  ORDER BY `id` ASC')->result();
+    foreach ($query as $row) {
+        $article[$row->id] = $row->title;
+    }
+
+    return $article;
+}
+
+public function getrecommendarticledropdown()
+{
+    $query = $this->db->query('SELECT * FROM `lll_article`  ORDER BY `id` ASC')->result();
+    foreach ($query as $row) {
+        $article[$row->id] = $row->title;
+    }
+
+    return $article;
+}
 }
 ?>

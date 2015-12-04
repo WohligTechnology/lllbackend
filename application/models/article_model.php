@@ -36,5 +36,22 @@ public function delete($id)
 $query=$this->db->query("DELETE FROM `lll_article` WHERE `id`='$id'");
 return $query;
 }
+
+public function getcategorydropdown()
+{
+    $query = $this->db->query('SELECT * FROM `lll_category`  ORDER BY `id` ASC')->result();
+    foreach ($query as $row) {
+        $category[$row->id] = $row->title;
+    }
+    return $category;
+}
+public function getrecommendarticledropdown()
+{
+    $query = $this->db->query('SELECT * FROM `lll_recommendarticle`  ORDER BY `id` ASC')->result();
+    foreach ($query as $row) {
+        $recommendarticle[$row->id] = $row->recommendarticle;
+    }
+    return $recommendarticle;
+}
 }
 ?>
