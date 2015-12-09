@@ -1,6 +1,6 @@
 <div class="row">
 <div class="col s12">
-<h4 class="pad-left-15">Create category</h4>
+<h4 class="pad-left-15">Create Category</h4>
 </div>
 <form class='col s12' method='post' action='<?php echo site_url("site/createcategorysubmit");?>' enctype= 'multipart/form-data'>
 <div class="row">

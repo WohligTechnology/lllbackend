@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<title><?php echo $title;?> - BusinessApp</title>
+<title><?php echo $title;?> - LoveLieLust</title>
 
 <head>
 	<link rel="shortcut icon" href="<?php echo base_url('assets').'/';?>img/favicon.png" type="image/png"/>
@@ -32,7 +32,7 @@
 			<ul id="slide-out" class="side-nav fixed">
 				<li class="sub-menu logo">
 						<a id="logo-container" href="<?php echo site_url(); ?>" class="align-center blue-text text-darken-4" style="font-size: 28px;">
-                            Business<span style="font-weight: 400;">App</span>
+                            LoveLieLust
 						</a>
                     </li>
                     <?php

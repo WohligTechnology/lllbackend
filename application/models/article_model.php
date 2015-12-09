@@ -45,13 +45,19 @@ public function getcategorydropdown()
     }
     return $category;
 }
-public function getrecommendarticledropdown()
+public function getarticledropdown()
 {
-    $query = $this->db->query('SELECT * FROM `lll_recommendarticle`  ORDER BY `id` ASC')->result();
-    foreach ($query as $row) {
-        $recommendarticle[$row->id] = $row->recommendarticle;
-    }
-    return $recommendarticle;
+  $query=$this->db->query("SELECT * FROM `lll_article`  ORDER BY `id` ASC")->result();
+  $return=array(
+  "" => "Select"
+  );
+  foreach($query as $row)
+  {
+    $return[$row->id]=$row->title;
+  }
+
+  return $return;
 }
+
 }
 ?>

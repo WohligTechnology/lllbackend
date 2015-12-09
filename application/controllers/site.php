@@ -511,7 +511,7 @@ $config['upload_path'] = './uploads/';
 			 $banner=$uploaddata['file_name'];
 		 }
 
-		 
+
 if($this->category_model->edit($id,$order,$title,$banner,$image,$text)==0)
 $data["alerterror"]="New category could not be Updated.";
 else
@@ -776,8 +776,8 @@ $access=array("1");
 $this->checkaccess($access);
 $data["page"]="createrecommendarticle";
 $data["title"]="Create recommendarticle";
-$data[ 'article' ] =$this->recommendarticle_model->getarticledropdown();
-$data[ 'recommendarticle' ] =$this->recommendarticle_model->getrecommendarticledropdown();
+$data[ 'article' ] =$this->article_model->getarticledropdown();
+$data[ 'recommendarticle' ] =$this->article_model->getarticledropdown();
 $this->load->view("template",$data);
 }
 public function createrecommendarticlesubmit()
@@ -791,8 +791,8 @@ if($this->form_validation->run()==FALSE)
 $data["alerterror"]=validation_errors();
 $data["page"]="createrecommendarticle";
 $data["title"]="Create recommendarticle";
-$data[ 'article' ] =$this->recommendarticle_model->getarticledropdown();
-$data[ 'recommendarticle' ] =$this->recommendarticle_model->getrecommendarticledropdown();
+$data[ 'article' ] =$this->article_model->getarticledropdown();
+$data[ 'recommendarticle' ] =$this->article_model->getarticledropdown();
 $this->load->view("template",$data);
 }
 else

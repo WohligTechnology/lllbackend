@@ -1,6 +1,6 @@
 <div class="row">
 <div class="col s12">
-<h4 class="pad-left-15">Create recommendarticle</h4>
+<h4 class="pad-left-15">Create Recommendarticle</h4>
 </div>
 <form class='col s12' method='post' action='<?php echo site_url("site/createrecommendarticlesubmit");?>' enctype= 'multipart/form-data'>
 <div class=" row">
