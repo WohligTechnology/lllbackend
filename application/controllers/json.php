@@ -19,4 +19,9 @@ class Json extends CI_Controller
     $data["message"] = $this->article_model->getOne($id);
     $this->load->view("json",$data);
   }
+  function addSubscriber() {
+    $email = $this->input->get_post("email");
+    $data["message"] = $this->user_model->addSubscriber($email);
+    $this->load->view("json",$data);
+  }
 }
