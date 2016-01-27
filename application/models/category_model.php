@@ -32,7 +32,11 @@ class category_model extends CI_Model
     }
     public function edit($id, $order, $title, $banner, $image, $text)
     {
-        $data = array('order' => $order,'title' => $title,'banner' => $banner,'image' => $image,'text' => $text);
+        $data = array('order' => $order,'title' => $title,'text' => $text);
+        if($banner != "")
+          $data['banner']=$banner;
+        if($image != "")
+          $data['image']=$image;
         $this->db->where('id', $id);
         $query = $this->db->update('lll_category', $data);
 

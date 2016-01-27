@@ -709,6 +709,23 @@ $image=$this->input->get_post("image");
 $author=$this->input->get_post("author");
 $timestamp=$this->input->get_post("timestamp");
 $desc=$this->input->get_post("desc");
+$config['upload_path'] = './uploads/';
+ $config['allowed_types'] = 'gif|jpg|png';
+ $this->load->library('upload', $config);
+ $filename="image";
+ $image="";
+ if (  $this->upload->do_upload($filename))
+ {
+	 $uploaddata = $this->upload->data();
+	 $image=$uploaddata['file_name'];
+ }
+if($image=="")
+			 {
+			// $image=$this->product_model->getimagebyid($id);
+					// print_r($image);
+					 $image=$image->image;
+			 }
+
 if($this->article_model->edit($id,$category,$title,$image,$author,$timestamp,$desc)==0)
 $data["alerterror"]="New article could not be Updated.";
 else

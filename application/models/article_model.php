@@ -30,8 +30,10 @@ class article_model extends CI_Model
 
         return $query;
     }
-    public function edit($id, $category, $title, $image, $author, $timestamp, $desc)
+    public function edit($id, $category, $title,  $author, $timestamp, $desc)
     {
+      if($image != "")
+        $data['image']=$image;
         $data = array('category' => $category,'title' => $title,'image' => $image,'author' => $author,'timestamp' => $timestamp,'desc' => $desc);
         $this->db->where('id', $id);
         $query = $this->db->update('lll_article', $data);
