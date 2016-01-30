@@ -61,7 +61,7 @@ echo set_value('image', $before->image);
 <div class="row">
 <div class="col s12 m6">
 <label>Description</label>
-<textarea name="desc" placeholder="Enter text ..."><?php echo set_value( 'desc',$before->desc);?></textarea>
+<textarea id="some-textarea" name="desc" placeholder="Enter text ..."><?php echo set_value( 'desc',$before->desc);?></textarea>
 </div>
 </div>
 <div class="row">
