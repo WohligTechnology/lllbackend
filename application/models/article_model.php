@@ -51,12 +51,18 @@ class article_model extends CI_Model
     public function getcategorydropdown()
     {
         $query = $this->db->query('SELECT * FROM `lll_category`  ORDER BY `id` ASC')->result();
+        $return=array(
+        "" => "Choose Category"
+        );
         foreach ($query as $row) {
-            $category[$row->id] = $row->title;
+            $return[$row->id] = $row->title;
         }
 
-        return $category;
+        return $return;
     }
+
+
+	
     public function getarticledropdown()
     {
         $query = $this->db->query('SELECT * FROM `lll_article`  ORDER BY `id` ASC')->result();
