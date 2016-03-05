@@ -609,7 +609,6 @@ $this->checkaccess($access);
 // $this->form_validation->set_rules("category","Category","trim");
 $data[ 'category' ] =$this->article_model->getcategorydropdown();
 $this->form_validation->set_rules("title","Title","trim");
-$this->form_validation->set_rules("image","Image","trim");
 $this->form_validation->set_rules("author","Author","trim");
 $this->form_validation->set_rules("timestamp","Timestamp","trim");
 $this->form_validation->set_rules("desc","Description","trim");
@@ -643,23 +642,18 @@ $config['upload_path'] = './uploads/';
 							$config_r['width'] = 800;
 							$config_r['height'] = 800;
 							$config_r['quality'] = 100;
-
 							// end of configs
-
 							$this->load->library('image_lib', $config_r);
 							$this->image_lib->initialize($config_r);
 							if (!$this->image_lib->resize()) {
 									$data['alerterror'] = 'Failed.'.$this->image_lib->display_errors();
-
 									// return false;
 							} else {
-
 									// print_r($this->image_lib->dest_image);
 									// dest_image
-
 									$image = $this->image_lib->dest_image;
-
 									// return false;
+							}
 							}
 if($this->article_model->create($category,$title,$image,$author,$timestamp,$desc)==0)
 $data["alerterror"]="New article could not be created.";
@@ -667,7 +661,7 @@ else
 $data["alertsuccess"]="article created Successfully.";
 $data["redirect"]="site/viewarticle";
 $this->load->view("redirect",$data);
-}
+
 }
 }
 public function editarticle()
