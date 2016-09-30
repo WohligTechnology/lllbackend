@@ -60,9 +60,71 @@ class User_model extends CI_Model
 		$returnval->value = true;
 		$query = $this->db->query("SELECT * FROM `subscriber` WHERE `email`  = '$email'");
 		if ($query->num_rows() > 0) {
+			$returnval->message="email already exists";
 			$returnval->value = false;
+			}else {
+			$message = "<html>
+
+			<body style='margin: 0 auto;font-family: sans-serif;width:600px;display: inline-block;'>
+			    <div style='background:#000;'>
+			        <div style='margin: 3% 0;width:50%;display: inline-block; float: left;'>
+			            <div style='text-align: right;margin: 17% 0;' ui-sref='home' href='#/home'>
+			                <ul style='padding: 0;margin: 0;list-style: none;'>
+			                    <li style='display: inline-block;margin-left: 5px;'>
+			                        <a href=''>
+			                            <div class='menu-icons'>
+			                                <img alt='' src='http://wohlig.co.in/lllbackend/assets/img/love.png' class=' img-responsive'>
+			                            </div>
+			                        </a>
+			                    </li>
+			                    <li style='display: inline-block;margin-left: 5px;'>
+			                        <a href=''>
+			                            <div class='menu-icons'>
+			                                <img alt='' src='http://wohlig.co.in/lllbackend/assets/img/lie.png' class='img-responsive'>
+			                            </div>
+			                        </a>
+			                    </li>
+			                    <li style='display: inline-block;margin-left: 5px;'>
+			                        <a href=''>
+			                            <div class='menu-icons'>
+			                                <img alt='' src='http://wohlig.co.in/lllbackend/assets/img/lust.png' class='img-responsive'>
+			                            </div>
+			                        </a>
+			                    </li>
+			                </ul>
+			            </div>
+			        </div>
+			        <div style='margin: 3% 0;width:50%;display: inline;'>
+			            <ul style='margin: 7% 4%;display: inline-block;color: #fff;list-style:none;'>
+			                <li>
+			                    <h2 style='height: 34px;font-size: 41px;margin: 0;font-weight: 100;'>Love</h2>
+			                </li>
+			                <li>
+			                    <h2 style='height: 34px;font-size: 41px;margin: 0;font-weight: 100;'>Lie</h2>
+			                </li>
+			                <li>
+			                    <h2 style='height: 34px;font-size: 41px;margin: 0;font-weight: 100;'>Lust</h2>
+			                </li>
+			            </ul>
+			        </div>
+			    </div>
+			    <div style='margin:5%;text-align: left;min-height:416px;'>
+			        <div style='margin-left: 5%;'>
+			            <h1 class='conf' style='font-size: 23px;color: #000;letter-spacing: 1px;font-weight: 600;'>Please Confirm Subscription</h1>
+			            <button style='background: transparent;border: 2px solid #8a8989;font-weight: 500;margin: 8% 0 6%;word-spacing: 2px;height: auto;font-size: 14px;padding: 16px 8px;color: #000;'><a href='#' style='color: black;text-decoration: none;font-weight: 600;'>Yes, subscribe me to this list.</a></button>
+			            <p style='font-size: 16px;margin-bottom: 3%;color: #000;width: 74%;float: left;line-height: 106%;'>If you received this email by mistake, simply deleted it. You won't be subscribed if you don't click the confirmation link above.</p>
+			            <p style='font-size: 16px;margin-bottom: 3%;color: #000;width: 74%;float: left;line-height: 106%;'>For questions about this list, please contact::<br>info@lovelielust.com</p>
+			        </div>
+			    </div>
+			    <div style='background: #000;padding: 11px !important;'></div>
+			</body>
+
+			</html>";
+			$this->email_model->emailer($message,'New Subscription',$email,$username);
+			$this->db->query("INSERT INTO `subscriber` (`id`, `email`, `timestamp`, `status`) VALUES (NULL, '$email', CURRENT_TIMESTAMP, '1')");
 		}
-		$this->db->query("INSERT INTO `subscriber` (`id`, `email`, `timestamp`, `status`) VALUES (NULL, '$email', CURRENT_TIMESTAMP, '1')");
+
+
 		return $returnval;
 	}
 
@@ -127,6 +189,10 @@ class User_model extends CI_Model
 	function deleteuser($id)
 	{
 		$query=$this->db->query("DELETE FROM `user` WHERE `id`='$id'");
+	}
+		function deletesubscribe($id)
+	{
+		$query=$this->db->query("DELETE FROM `subscriber` WHERE `id`='$id'");
 	}
 	function changepassword($id,$password)
 	{
