@@ -66,7 +66,12 @@ echo set_value('banner', $before->banner);
     </div>
   </div>
 </div>
-
+<div class="row">
+<div class="input-field col s6">
+<label for="link">Link</label>
+<input type="text" id="link" name="link" value='<?php echo set_value('link',$before->link);?>'>
+</div>
+</div>
 <div class="row">
 <div class="input-field col s6">
 <label for="Text">Text</label>

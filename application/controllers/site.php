@@ -428,6 +428,7 @@ else
 {
 $order=$this->input->get_post("order");
 $title=$this->input->get_post("title");
+$link=$this->input->get_post("link");
 // $banner=$this->input->get_post("banner");
 // $image=$this->input->get_post("image");
 
@@ -451,7 +452,7 @@ $image=$uploaddata['file_name'];
 }
 
 
-if($this->category_model->create($order,$title,$banner,$image,$text)==0)
+if($this->category_model->create($order,$title,$banner,$image,$text,$link)==0)
 $data["alerterror"]="New category could not be created.";
 else
 $data["alertsuccess"]="category created Successfully.";
@@ -492,6 +493,7 @@ $id=$this->input->get_post("id");
 $order=$this->input->get_post("order");
 $title=$this->input->get_post("title");
 $text=$this->input->get_post("text");
+$link=$this->input->get_post("link");
 
 $config['upload_path'] = './uploads/';
 		 $config['allowed_types'] = 'gif|jpg|png';
@@ -512,7 +514,7 @@ $config['upload_path'] = './uploads/';
 		 }
 
 
-if($this->category_model->edit($id,$order,$title,$banner,$image,$text)==0)
+if($this->category_model->edit($id,$order,$title,$banner,$image,$text,$link)==0)
 $data["alerterror"]="New category could not be Updated.";
 else
 $data["alertsuccess"]="category Updated Successfully.";

@@ -5,9 +5,9 @@ if (!defined('BASEPATH')) {
 }
 class category_model extends CI_Model
 {
-    public function create($order, $title, $banner, $image, $text)
+    public function create($order, $title, $banner, $image, $text,$link)
     {
-        $data = array('order' => $order,'title' => $title,'banner' => $banner,'image' => $image,'text' => $text);
+        $data = array('order' => $order,'title' => $title,'banner' => $banner,'image' => $image,'text' => $text,'link' => $link);
         $query = $this->db->insert('lll_category', $data);
         $id = $this->db->insert_id();
         if (!$query) {
@@ -30,9 +30,9 @@ class category_model extends CI_Model
 
         return $query;
     }
-    public function edit($id, $order, $title, $banner, $image, $text)
+    public function edit($id, $order, $title, $banner, $image, $text,$link)
     {
-        $data = array('order' => $order,'title' => $title,'text' => $text);
+        $data = array('order' => $order,'title' => $title,'text' => $text,'link' => $link);
         if($banner != "")
           $data['banner']=$banner;
         if($image != "")
