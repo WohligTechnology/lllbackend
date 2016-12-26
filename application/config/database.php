@@ -21,7 +21,11 @@
 |	['dbprefix'] You can add an optional prefix, which will be added
 |				 to the table name when using the  Active Record class
 |	['pconnect'] TRUE/FALSE - Whether to use a persistent connection
-|	['db_debug'] TRUE/FALSE - Whether database errors should be displayed.
+|	['db_debug'] TRUE/FALSE - Whether databa
+												//UPDATE DATABASE CART
+
+												//UPDATE DATABASE CART
+ errors should be displayed.
 |	['cache_on'] TRUE/FALSE - Enables/disables query caching
 |	['cachedir'] The path to the folder where cache files should be stored
 |	['char_set'] The character set used in communicating with the database
@@ -51,17 +55,16 @@ $active_record = TRUE;
 
 
 $myserver=$_SERVER['SERVER_NAME'];
-
-if($myserver!="localhost")
+if($myserver != "localhost")
 {
     $db['default']['hostname'] = 'localhost';
-    $db['default']['username'] = 'root';
-    $db['default']['password'] = '';
-    $db['default']['database'] = 'lll';
+     $db['default']['username'] = 'wohligco_lllb';
+     $db['default']['password'] = 'wohlig123!@#';
+     $db['default']['database'] = 'wohligco_lllb';
     $db['default']['dbdriver'] = 'mysql';
     $db['default']['dbprefix'] = '';
-    $db['default']['pconnect'] = TRUE;
-    $db['default']['db_debug'] = TRUE;
+    $db['default']['pconnect'] = FALSE;
+    $db['default']['db_debug'] = FALSE;
     $db['default']['cache_on'] = FALSE;
     $db['default']['cachedir'] = '';
     $db['default']['char_set'] = 'utf8';
@@ -76,7 +79,7 @@ else
     $db['default']['username'] = 'root';
     $db['default']['password'] = '';
     $db['default']['database'] = 'lll';
-    $db['default']['dbdriver'] = 'mysqli';
+    $db['default']['dbdriver'] = 'mysql';
     $db['default']['dbprefix'] = '';
     $db['default']['pconnect'] = TRUE;
     $db['default']['db_debug'] = TRUE;
