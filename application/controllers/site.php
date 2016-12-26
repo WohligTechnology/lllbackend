@@ -1062,5 +1062,162 @@ $this->user_model->deletesubscribe($this->input->get("id"));
 $data["redirect"]="site/viewsubscribe";
 $this->load->view("redirect",$data);
 }
+
+
+// query
+
+public function viewquery()
+{
+$access=array("1");
+$this->checkaccess($access);
+$data["page"]="viewquery";
+$data["base_url"]=site_url("site/viewqueryjson");
+$data["title"]="View query";
+$this->load->view("template",$data);
+}
+function viewqueryjson()
+{
+$elements=array();
+$elements[0]=new stdClass();
+$elements[0]->field="`lll_query`.`id`";
+$elements[0]->sort="1";
+$elements[0]->header="Id";
+$elements[0]->alias="id";
+$elements[1]=new stdClass();
+$elements[1]->field="`lll_query`.`question`";
+$elements[1]->sort="1";
+$elements[1]->header="question";
+$elements[1]->alias="question";
+$elements[2]=new stdClass();
+$elements[2]->field="`lll_query`.`answer`";
+$elements[2]->sort="1";
+$elements[2]->header="answer";
+$elements[2]->alias="answer";
+$elements[3]=new stdClass();
+$elements[3]->field="`lll_query`.`author`";
+$elements[3]->sort="1";
+$elements[3]->header="author";
+$elements[3]->alias="author";
+$elements[4]=new stdClass();
+$elements[4]->field="`lll_category`.`title`";
+$elements[4]->sort="1";
+$elements[4]->header="category";
+$elements[4]->alias="category";
+$elements[5]=new stdClass();
+$elements[5]->field="`lll_query`.`timestamp`";
+$elements[5]->sort="1";
+$elements[5]->header="timestamp";
+$elements[5]->alias="timestamp";
+$search=$this->input->get_post("search");
+$pageno=$this->input->get_post("pageno");
+$orderby=$this->input->get_post("orderby");
+$orderorder=$this->input->get_post("orderorder");
+$maxrow=$this->input->get_post("maxrow");
+if($maxrow=="")
+{
+$maxrow=20;
+}
+if($orderby=="")
+{
+$orderby="id";
+$orderorder="ASC";
+}
+$data["message"]=$this->chintantable->query($pageno,$maxrow,$orderby,$orderorder,$search,$elements,"FROM `lll_query` INNER JOIN `lll_category` ON `lll_category`.`id`=`lll_query`.`category`");
+$this->load->view("json",$data);
+}
+
+public function createquery()
+{
+$access=array("1");
+$this->checkaccess($access);
+$data[ 'category' ] =$this->article_model->getcategorydropdown();
+$data["page"]="createquery";
+$data["title"]="Create query";
+$this->load->view("template",$data);
+}
+public function createquerysubmit()
+{
+$access=array("1");
+$this->checkaccess($access);
+$data[ 'category' ] =$this->article_model->getcategorydropdown();
+$this->form_validation->set_rules("type","Type","trim");
+$this->form_validation->set_rules("subject","Subject","trim");
+$this->form_validation->set_rules("query","Query","trim");
+$this->form_validation->set_rules("timestamp","Timestamp","trim");
+if($this->form_validation->run()==FALSE)
+{
+$data["alerterror"]=validation_errors();
+$data["page"]="createquery";
+$data["title"]="Create query";
+$this->load->view("template",$data);
+}
+else
+{
+$question=$this->input->get_post("question");
+$answer=$this->input->get_post("answer");
+$author=$this->input->get_post("author");
+$category=$this->input->get_post("category");
+if($this->query_model->create($question,$answer,$author,$category)==0)
+$data["alerterror"]="New query could not be created.";
+else
+$data["alertsuccess"]="query created Successfully.";
+$data["redirect"]="site/viewquery";
+$this->load->view("redirect",$data);
+}
+}
+public function editquery()
+{
+$access=array("1");
+$this->checkaccess($access);
+$data[ 'category' ] =$this->article_model->getcategorydropdown();
+$data["page"]="editquery";
+$data["title"]="Edit query";
+$data["before"]=$this->query_model->beforeedit($this->input->get("id"));
+$this->load->view("template",$data);
+}
+public function editquerysubmit()
+{
+$access=array("1");
+$this->checkaccess($access);
+
+$this->form_validation->set_rules("id","Id","trim");
+$this->form_validation->set_rules("type","Type","trim");
+$this->form_validation->set_rules("subject","Subject","trim");
+$this->form_validation->set_rules("query","Query","trim");
+$this->form_validation->set_rules("timestamp","Timestamp","trim");
+if($this->form_validation->run()==FALSE)
+{
+$data["alerterror"]=validation_errors();
+$data[ 'category' ] =$this->article_model->getcategorydropdown();
+$data["page"]="editquery";
+$data["title"]="Edit query";
+$data["before"]=$this->query_model->beforeedit($this->input->get("id"));
+$this->load->view("template",$data);
+}
+else
+{
+$id=$this->input->get_post("id");
+$question=$this->input->get_post("question");
+$answer=$this->input->get_post("answer");
+$author=$this->input->get_post("author");
+$category=$this->input->get_post("category");
+if($this->query_model->edit($id,$question,$answer,$author,$category)==0)
+$data["alerterror"]="New query could not be Updated.";
+else
+$data["alertsuccess"]="query Updated Successfully.";
+$data["redirect"]="site/viewquery";
+$this->load->view("redirect",$data);
+}
+}
+public function deletequery()
+{
+$access=array("1");
+$this->checkaccess($access);
+$this->query_model->delete($this->input->get("id"));
+$data["redirect"]="site/viewquery";
+$this->load->view("redirect",$data);
+}
+
+
 }
 ?>

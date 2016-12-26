@@ -24,4 +24,18 @@ class Json extends CI_Controller
     $data["message"] = $this->user_model->addSubscriber($email);
     $this->load->view("json",$data);
   }
+  function getSingleQuery() {
+    $id = $this->input->get_post("id");
+    $data["message"] = $this->query_model->getsinglequery($id);
+    $this->load->view("json",$data);
+  }
+  function querySubmit() 
+  {
+        $data = json_decode(file_get_contents('php://input'), true);
+        $question = $data['question'];
+        $category = $data['category'];
+        $data['message'] = $this->query_model->querySubmit($question, $category);
+        $this->load->view('json', $data);
+  }
+ 
 }
