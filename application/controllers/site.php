@@ -1120,7 +1120,7 @@ $maxrow=20;
 if($orderby=="")
 {
 $orderby="id";
-$orderorder="ASC";
+$orderorder="DESC";
 }
 $data["message"]=$this->chintantable->query($pageno,$maxrow,$orderby,$orderorder,$search,$elements,"FROM `lll_query` INNER JOIN `lll_category` ON `lll_category`.`id`=`lll_query`.`category`");
 $this->load->view("json",$data);
